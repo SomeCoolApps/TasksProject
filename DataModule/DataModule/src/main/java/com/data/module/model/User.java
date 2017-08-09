@@ -3,7 +3,7 @@ package com.data.module.model;
 public class User {
 	private int id;
 	private String name;
-
+ // user from jpa
 	
 	public User() {
 		super();
