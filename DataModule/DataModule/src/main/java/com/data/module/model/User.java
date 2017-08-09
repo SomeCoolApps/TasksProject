@@ -1,9 +1,17 @@
 package com.data.module.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "User", catalog = "tasks" )
+
 public class User {
 	private int id;
 	private String name;
- // user from jpa
+    // user from jpa
 	
 	public User() {
 		super();
@@ -12,12 +20,16 @@ public class User {
 		this.id = id;
 		this.name = name;
 	}
+	@Id
+	@Column(name="id")
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	@Column(name="name")
 	public String getName() {
 		return name;
 	}
