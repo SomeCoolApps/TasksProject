@@ -1,4 +1,4 @@
-package com.coolapps.tasks;
+package com.coolapps.tasks.controllers;
 
 import java.util.List;
 
@@ -8,6 +8,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.coolapps.tasks.model.User;
+import com.coolapps.tasks.model.UserDao;
 
 
 

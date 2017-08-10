@@ -1,4 +1,4 @@
-package com.coolapps.tasks;
+package com.coolapps.tasks.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

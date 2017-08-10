@@ -1,4 +1,4 @@
-package com.coolapps.tasks;
+package com.coolapps.tasks.model;
 
 import java.util.List;
 

@@ -23,7 +23,7 @@ class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostP
 
 	
 	
-	<bean id="sessionFactory" class="com.coolapps.tasks.HibernateUtils"
+	<bean id="sessionFactory" class="com.coolapps.tasks.controllers.HibernateUtils"
 		factory-method="getSessionFactory" scope="prototype" autowire="byType"
 		autowire-candidate="true" />
 		
