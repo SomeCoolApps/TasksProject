@@ -13,6 +13,10 @@
   <property name="show_sql">true</property>
   
   <mapping class="com.coolapps.tasks.model.User"/>
+  <mapping class="com.coolapps.tasks.model.UserActivites"/>
+  <mapping class="com.coolapps.tasks.model.UserTask"/>
+  <mapping class="com.coolapps.tasks.model.Task"/>
+  <mapping class="com.coolapps.tasks.model.UserTaskPK"/>
    
  </session-factory>
 </hibernate-configuration>

@@ -8,7 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class UserActivitePK implements Serializable {
+public class UserActivitesPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class UserActivitePK implements Serializable {
 	@Column(name="activity_id")
 	private double activityId;
 
-	public UserActivitePK() {
+	public UserActivitesPK() {
 	}
 	public double getUserId() {
 		return this.userId;
@@ -37,10 +37,10 @@ public class UserActivitePK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof UserActivitePK)) {
+		if (!(other instanceof UserActivitesPK)) {
 			return false;
 		}
-		UserActivitePK castOther = (UserActivitePK)other;
+		UserActivitesPK castOther = (UserActivitesPK)other;
 		return 
 			(this.userId == castOther.userId)
 			&& (this.activityId == castOther.activityId);

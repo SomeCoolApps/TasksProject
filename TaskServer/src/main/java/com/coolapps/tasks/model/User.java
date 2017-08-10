@@ -22,7 +22,7 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to UserActivite
 	@OneToMany(mappedBy="user")
-	private List<UserActivite> userActivites;
+	private List<UserActivites> userActivites;
 
 	//bi-directional many-to-one association to UserTask
 	@OneToMany(mappedBy="user")
@@ -47,22 +47,22 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public List<UserActivite> getUserActivites() {
+	public List<UserActivites> getUserActivites() {
 		return this.userActivites;
 	}
 
-	public void setUserActivites(List<UserActivite> userActivites) {
+	public void setUserActivites(List<UserActivites> userActivites) {
 		this.userActivites = userActivites;
 	}
 
-	public UserActivite addUserActivite(UserActivite userActivite) {
+	public UserActivites addUserActivite(UserActivites userActivite) {
 		getUserActivites().add(userActivite);
 		userActivite.setUser(this);
 
 		return userActivite;
 	}
 
-	public UserActivite removeUserActivite(UserActivite userActivite) {
+	public UserActivites removeUserActivite(UserActivites userActivite) {
 		getUserActivites().remove(userActivite);
 		userActivite.setUser(null);
 

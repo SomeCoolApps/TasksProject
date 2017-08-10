@@ -11,12 +11,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="user_activites")
-@NamedQuery(name="UserActivite.findAll", query="SELECT u FROM UserActivite u")
-public class UserActivite implements Serializable {
+@NamedQuery(name="UserActivites.findAll", query="SELECT u FROM UserActivites u")
+public class UserActivites implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private UserActivitePK id;
+	private UserActivitesPK id;
 
 	private String activity;
 
@@ -29,14 +29,14 @@ public class UserActivite implements Serializable {
 	@JoinColumn(name="user_id")
 	private User user;
 
-	public UserActivite() {
+	public UserActivites() {
 	}
 
-	public UserActivitePK getId() {
+	public UserActivitesPK getId() {
 		return this.id;
 	}
 
-	public void setId(UserActivitePK id) {
+	public void setId(UserActivitesPK id) {
 		this.id = id;
 	}
 
