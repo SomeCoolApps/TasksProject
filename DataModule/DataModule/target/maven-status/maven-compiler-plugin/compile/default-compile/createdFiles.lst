@@ -1,5 +1,8 @@
+com/tasks/configuration/ProjectInitializer.class
 com/data/module/model/Task.class
+com/tasks/configuration/ProjectConfig.class
 com/data/module/model/UserTester.class
+com/tasks/rest/controllers/UserController.class
 com/data/module/HibernateUtils.class
 com/data/module/model/User.class
 com/data/module/model/UserDao.class

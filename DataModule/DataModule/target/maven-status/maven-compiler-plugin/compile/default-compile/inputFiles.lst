@@ -1,5 +1,8 @@
+/Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/tasks/configuration/ProjectInitializer.java
+/Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/tasks/rest/controllers/UserController.java
 /Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/data/module/model/Task.java
 /Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/data/module/model/User.java
 /Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/data/module/model/UserTester.java
+/Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/tasks/configuration/ProjectConfig.java
 /Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/data/module/model/UserDao.java
 /Users/home_comp/git/TasksProject/DataModule/DataModule/src/main/java/com/data/module/HibernateUtils.java
