@@ -1,41 +1,94 @@
 package com.coolapps.tasks.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
+
+/**
+ * The persistent class for the user database table.
+ * 
+ */
 @Entity
-@Table(name = "User", catalog = "tasks" )
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-public class User {
-	private int id;
-	private String name;
-    // user from jpa
-	
-	public User() {
-		super();
-	}
-	public User(int id, String name) {
-		this.id = id;
-		this.name = name;
-	}
 	@Id
-	@Column(name="id")
-	public int getId() {
-		return id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+
+	private String name;
+
+	//bi-directional many-to-one association to UserActivite
+	@OneToMany(mappedBy="user")
+	private List<UserActivite> userActivites;
+
+	//bi-directional many-to-one association to UserTask
+	@OneToMany(mappedBy="user")
+	private List<UserTask> userTasks;
+
+	public User() {
 	}
+
+	public int getId() {
+		return this.id;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	@Column(name="name")
+
 	public String getName() {
-		return name;
+		return this.name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public List<UserActivite> getUserActivites() {
+		return this.userActivites;
+	}
+
+	public void setUserActivites(List<UserActivite> userActivites) {
+		this.userActivites = userActivites;
+	}
+
+	public UserActivite addUserActivite(UserActivite userActivite) {
+		getUserActivites().add(userActivite);
+		userActivite.setUser(this);
+
+		return userActivite;
+	}
+
+	public UserActivite removeUserActivite(UserActivite userActivite) {
+		getUserActivites().remove(userActivite);
+		userActivite.setUser(null);
+
+		return userActivite;
+	}
+
+	public List<UserTask> getUserTasks() {
+		return this.userTasks;
+	}
+
+	public void setUserTasks(List<UserTask> userTasks) {
+		this.userTasks = userTasks;
+	}
+
+	public UserTask addUserTask(UserTask userTask) {
+		getUserTasks().add(userTask);
+		userTask.setUser(this);
+
+		return userTask;
+	}
+
+	public UserTask removeUserTask(UserTask userTask) {
+		getUserTasks().remove(userTask);
+		userTask.setUser(null);
+
+		return userTask;
+	}
 
 }

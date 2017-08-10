@@ -33,7 +33,9 @@ public class UserController {
 		    
 		    UserDao dao = new UserDao();
 		    dao.setSessionFactory(sf);
-		    User e = new User(11,player);
+		    User e = new User();
+		    e.setId(12);
+		    e.setName("sunil");
 		   
 		    
 			dao.saveorUpdateUser(e );
@@ -47,8 +49,11 @@ public class UserController {
 		      
 		
 
-	        User user = new User(1,"Sunil");
+	        User user = new User();
+	        user.setId(13);
+	        user.setName("sunil");
 	        return user;
 	    }
 
 }
+
