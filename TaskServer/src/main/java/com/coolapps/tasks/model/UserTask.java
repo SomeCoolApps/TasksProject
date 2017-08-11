@@ -19,12 +19,12 @@ public class UserTask implements Serializable {
 
 	//bi-directional many-to-one association to Task
 	@ManyToOne
-	@JoinColumn(name="task_id")
+	@JoinColumn(name="task_id", insertable=false, updatable=false)
 	private Task task;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id", insertable=false, updatable=false)
 	private User user;
 
 	public UserTask() {
