@@ -13,6 +13,10 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<jackson.library>2.7.5</jackson.library>
+		<docker.image.prefix>coolapps</docker.image.prefix>
+
+		<!--Set to name of project -->
+		<docker.image.name>TaskServer</docker.image.name>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -190,6 +194,7 @@
 		<!-- my changes end -->
 
 
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -252,6 +257,38 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.20.0</version>
+
+				<configuration>
+
+					<!--<dockerHost>http://127.0.0.1:2375</dockerHost> -->
+					  <dockerHost>tcp://192.168.99.100:2376</dockerHost>
+					<!--  <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
+
+					<verbose>true</verbose>
+					<images>
+						<image>
+							<name>${docker.image.prefix}/${docker.image.name}</name>
+							<build>
+								<dockerFileDir>${project.basedir}/</dockerFileDir>
+
+								<!--copies artficact to docker build dir in target -->
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+
 
 		</plugins>
 	</build>

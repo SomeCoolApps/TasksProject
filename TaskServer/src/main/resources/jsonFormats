@@ -1,0 +1,30 @@
+ 
+{
+"id": 33,
+"name": "player",
+"userActivites": [
+  {
+"id": null,
+"activity": "create schedule",
+"activityDate": 1502833984849,
+"user": null
+}
+],
+"userTasks": [
+  {
+"id": null,
+"task": {
+"id": 0,
+"createDate": null,
+"description": "task description",
+"dueDate": null,
+"name": null,
+"parent": 0,
+"priority": null,
+"status": null,
+"userTasks": null
+},
+"user": null
+}
+],
+}
