@@ -26,6 +26,9 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/user/{name}")
 	public User message(@PathVariable String name,@RequestBody User user2) {// REST Endpoint.
 		
+		List<UserActivites> activities = user2.getUserActivites();
+		
+		
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		SessionFactory sf = (SessionFactory) ctx.getBean("sessionFactory");
@@ -37,6 +40,7 @@ public class UserController {
 		e.setName(name);
 
 		dao.saveorUpdateUser(e);
+		
 		List<User> t = dao.findUser(name);
 		int id =0;
 		for (User f : t) {
