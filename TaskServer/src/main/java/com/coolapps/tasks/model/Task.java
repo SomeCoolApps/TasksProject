@@ -17,7 +17,7 @@ public class Task implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private double id;
+	private int id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_date")
@@ -44,11 +44,11 @@ public class Task implements Serializable {
 	public Task() {
 	}
 
-	public double getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(double id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -2,6 +2,7 @@ package com.coolapps.tasks.controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -24,26 +25,40 @@ import com.coolapps.tasks.model.UserTask;
 public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user/{name}")
-	public User message(@PathVariable String name,@RequestBody User user2) {// REST Endpoint.
+	public User message(@PathVariable String name, @RequestBody User user2) {// REST
+																				// Endpoint.
+
 		
-		List<UserActivites> activities = user2.getUserActivites();
-		
-		
+
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		SessionFactory sf = (SessionFactory) ctx.getBean("sessionFactory");
 
 		UserDao dao = new UserDao();
 		dao.setSessionFactory(sf);
-		User e = new User();
 		
+		
+		TaskDao taskDao = new TaskDao();
+		taskDao.setSessionFactory(sf);
+		
+		List<UserActivites> activities = user2.getUserActivites();
+		List<UserTask> t = user2.getUserTasks();
+		for(UserTask task: t){
+			if(task.getTask()!= null )
+			 {taskDao.saveorUpdateTask(task.getTask());System.out.println("persist");}
+			else{
+				System.out.println("nothing to persist ");
+			}
+		}
+		User e = new User();
+
 		e.setName(name);
 
 		dao.saveorUpdateUser(e);
-		
-		List<User> t = dao.findUser(name);
-		int id =0;
-		for (User f : t) {
+
+		List<User> s = dao.findUser(name);
+		int id = 0;
+		for (User f : s) {
 			System.out.println(f.getName());
 			id = f.getId();
 		}
@@ -57,25 +72,22 @@ public class UserController {
 		UserActivites activity = new UserActivites();
 		activity.setActivity("create schedule");
 		activity.setActivityDate(new Date());
-		userActivites.add(activity );
-		user.setUserActivites(userActivites );
+		userActivites.add(activity);
+		user.setUserActivites(userActivites);
 		List<UserTask> userTasks = new ArrayList<UserTask>();
 		UserTask task = new UserTask();
 		Task task1 = new Task();
 		task1.setDescription("task description");
-		//task1.setStatus(");
-		task.setTask(task1 );
-		
-		userTasks.add(task );
-		user.setUserTasks(userTasks );
+		// task1.setStatus(");
+		task.setTask(task1);
+
+		userTasks.add(task);
+		user.setUserTasks(userTasks);
 		return user;
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/task/{name}/{summary}, method = RequestMethod.POST")
-	public Task createTask(@PathVariable String name , @PathVariable String summary){
+	public Task createTask(@PathVariable String name, @PathVariable String summary) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
@@ -87,7 +99,7 @@ public class UserController {
 
 		dao.saveorUpdateTask(task);
 		return task;
-		
+
 	}
 
 }
