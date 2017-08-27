@@ -257,37 +257,63 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
-				<groupId>io.fabric8</groupId>
+				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.20.0</version>
-
+				<version>0.4.10</version>
 				<configuration>
-
-					<!--<dockerHost>http://127.0.0.1:2375</dockerHost> -->
-					  <dockerHost>tcp://192.168.99.100:2376</dockerHost>
-					<!--  <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
-
-					<verbose>true</verbose>
-					<images>
-						<image>
-							<name>${docker.image.prefix}/${docker.image.name}</name>
-							<build>
-								<dockerFileDir>${project.basedir}/</dockerFileDir>
-
-								<!--copies artficact to docker build dir in target -->
-								<assembly>
-									<descriptorRef>artifact</descriptorRef>
-								</assembly>
-								<tags>
-									<tag>latest</tag>
-									<tag>${project.version}</tag>
-								</tags>
-							</build>
-						</image>
-					</images>
+					<imageName>buildfrommaven/${project.artifactId}</imageName>
+					<dockerDirectory>${project.basedir}</dockerDirectory>
 				</configuration>
+				<executions>
+					<execution>
+						<id>build-image</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+
+					<!--
+					the below exections can be used to push the docker image to dockerhub
+					 <execution>
+						<id>tag-image-version</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<configuration>
+							<image>hotblac/${project.artifactId}</image>
+							<newName>docker.io/hotblac/${project.artifactId}:${project.version}</newName>
+							<serverId>docker-hub</serverId>
+							<pushImage>true</pushImage>
+						</configuration>
+					</execution>
+					<execution>
+						<id>tag-image-latest</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<configuration>
+							<image>hotblac/${project.artifactId}</image>
+							<newName>docker.io/hotblac/${project.artifactId}:latest</newName>
+							<serverId>docker-hub</serverId>
+							<pushImage>true</pushImage>
+						</configuration>
+					</execution> -->
+				</executions>
+
 			</plugin>
+			<!-- <plugin> <groupId>io.fabric8</groupId> <artifactId>docker-maven-plugin</artifactId> 
+				<version>0.20.0</version> <configuration> <dockerHost>http://127.0.0.1:2375</dockerHost> 
+				<dockerHost>tcp://192.168.99.100:2376</dockerHost> <dockerHost>unix:///var/run/docker.sock</dockerHost> 
+				<verbose>true</verbose> <images> <image> <name>${docker.image.prefix}/${docker.image.name}</name> 
+				<build> <dockerFileDir>${project.basedir}/</dockerFileDir> copies artficact 
+				to docker build dir in target <assembly> <descriptorRef>artifact</descriptorRef> 
+				</assembly> <tags> <tag>latest</tag> <tag>${project.version}</tag> </tags> 
+				</build> </image> </images> </configuration> </plugin> -->
 
 
 		</plugins>
