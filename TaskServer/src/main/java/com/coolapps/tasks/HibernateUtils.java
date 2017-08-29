@@ -7,7 +7,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Component;
 @Resource
-public class HibernateUtils  {
+public class HibernateUtils   {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
